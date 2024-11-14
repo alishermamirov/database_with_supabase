@@ -10,10 +10,9 @@ class NotesScreen extends StatefulWidget {
 }
 
 class _NotesScreenState extends State<NotesScreen> {
-
   final service = NoteService();
   final noteController = TextEditingController();
-  
+
   //add
   void addNote() {
     showDialog(
@@ -27,6 +26,8 @@ class _NotesScreenState extends State<NotesScreen> {
           actions: [
             ElevatedButton(
               onPressed: () {
+                noteController.clear();
+
                 Navigator.pop(context);
               },
               child: const Text("Cancel"),
@@ -35,9 +36,9 @@ class _NotesScreenState extends State<NotesScreen> {
               onPressed: () async {
                 final note = Note(content: noteController.text);
                 await service.createNote(note);
+                noteController.clear();
 
                 Navigator.pop(context);
-                noteController.clear();
               },
               child: const Text("Add"),
             ),
@@ -61,6 +62,8 @@ class _NotesScreenState extends State<NotesScreen> {
           actions: [
             ElevatedButton(
               onPressed: () {
+                noteController.clear();
+
                 Navigator.pop(context);
               },
               child: const Text("Cancel"),
@@ -69,6 +72,8 @@ class _NotesScreenState extends State<NotesScreen> {
               onPressed: () async {
                 final note = noteController.text;
                 await service.updateNote(oldNote, note);
+                noteController.clear();
+
                 Navigator.pop(context);
               },
               child: const Text("Add"),
@@ -89,6 +94,8 @@ class _NotesScreenState extends State<NotesScreen> {
           actions: [
             ElevatedButton(
               onPressed: () {
+                noteController.clear();
+
                 Navigator.pop(context);
               },
               child: const Text("Cancel"),
@@ -96,6 +103,8 @@ class _NotesScreenState extends State<NotesScreen> {
             ElevatedButton(
               onPressed: () async {
                 await service.deleteNote(note);
+                noteController.clear();
+
                 Navigator.pop(context);
               },
               child: const Text("Delete"),
