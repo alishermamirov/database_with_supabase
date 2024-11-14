@@ -51,6 +51,7 @@ class _NotesScreenState extends State<NotesScreen> {
   //update
 
   void updateNote(Note oldNote) {
+    noteController.text = oldNote.content!;
     showDialog(
       context: context,
       builder: (context) {
