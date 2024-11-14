@@ -1,7 +1,7 @@
 class Note {
   int? id;
   String? content;
-  Note({required this.id, required this.content});
+  Note({this.id, this.content});
 
   factory Note.fromMap(Map<String, dynamic> data) {
     return Note(
